@@ -18,7 +18,9 @@
  * @package WordPress
  */
 
-$dotenv = new Dotenv\Dotenv(__DIR__, '/../.env');
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = new \Dotenv\Dotenv(__DIR__, '/../.env');
 $dotenv->load();
 
 // ** MySQL settings - You can get this info from your web host ** //
