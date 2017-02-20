@@ -1,0 +1,21 @@
+{
+    "name": "Gemma/test.com",
+    "authors": [
+        {
+            "name": "Gemma Black",
+            "email": "gblackuk@googlemail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "contentful/contentful": "@beta",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

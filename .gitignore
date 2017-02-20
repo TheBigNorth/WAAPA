@@ -1,0 +1,4 @@
+vendor/*
+public/wordpress/*
+.env
+.vscode/*
