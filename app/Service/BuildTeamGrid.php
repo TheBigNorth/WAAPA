@@ -8,8 +8,8 @@ class BuildTeamGrid
 {
     public function __construct(GetTeamQuery $query, TeamGridViewModel $model)
     {
-        $team = $query->data();
-        foreach ($team as $member) {
+        $members = $query->data();
+        foreach ($members as $member) {
             $model->addMember(
                 new TeamGridMember(
                     $member->name,

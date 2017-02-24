@@ -9,13 +9,15 @@
     "require": {
         "guzzlehttp/guzzle": "~6.0",
         "contentful/contentful": "@beta",
-        "vlucas/phpdotenv": "2.2"
+        "vlucas/phpdotenv": "2.2",
+        "illuminate/database": "~5.0.0"
     },
     "require-dev": {
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Waapa\\Config\\": "config/"
         }
     }
 }

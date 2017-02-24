@@ -1,7 +1,5 @@
 <?php
-use \App\Bootstrap;
-Bootstrap::init();
+wp_head();
+\App\Wordpress\Theme::init();
 wp_footer();
 ?>
-
-

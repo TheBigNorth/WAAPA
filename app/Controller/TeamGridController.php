@@ -2,7 +2,6 @@
 
 use \App\Query\GetTeamQuery;
 use \App\ViewModel\TeamGridViewModel;
-use \App\ViewModel\TeamGridMember;
 use \App\View\TeamGridView;
 use \App\Service\BuildTeamGrid;
 

@@ -1,6 +1,6 @@
-<?php namespace App;
+<?php namespace App\Wordpress;
 
-class Bootstrap 
+class Theme 
 {
     public static function init()
     {

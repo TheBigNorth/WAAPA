@@ -5,5 +5,6 @@
 </head>
 <body>
     <div>
-        <br/><br/><a href="/">Home</a> <a href="/hello-world">Hello World</a> <a href="/sample-page">Sample Page</a>
+        <a href="/">Home</a> <a href="/hello-world">Hello World</a> <a href="/sample-page">Sample Page</a>
+        <a href="/products">Products</a>
     </div>
