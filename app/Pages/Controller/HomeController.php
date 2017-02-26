@@ -1,4 +1,4 @@
-<?php namespace App\Controller;
+<?php namespace App\Pages\Controller;
 
 use \App\ViewModel\HomeViewModel;
 use \App\Query\HomePageQuery;

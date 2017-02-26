@@ -6,7 +6,6 @@ use \Illuminate\Database\Console\Migrations;
 
 class Products
 {
-
     public function __construct()
     {
         if (!Capsule::schema()->hasTable('products')) {

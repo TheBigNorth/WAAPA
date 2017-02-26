@@ -1,8 +1,8 @@
 <?php namespace App\Wordpress;
 
-use \App\Controller\HomeController;
-use \App\Controller\PostsController;
-use \App\Controller\PageController;
+use \App\Pages\Controller\HomeController;
+use \App\Posts\Controller\PostsController;
+use \App\Pages\Controller\PageController;
 use \App\Shop\Controller\ProductController;
 
 class Router
@@ -15,12 +15,14 @@ class Router
 
     public static function web()
     {
-        
-        if (get_query_var( 'product')) {
-            return ProductController::getProductPage();
+
+        if (get_query_var('product')) {
+            return ProductController::getProductPage(
+                (integer) get_query_var('product')
+            );
         }
 
-        if (get_query_var( 'products')) {
+        if (get_query_var('products')) {
             return ProductController::getProductsPage();
         }
 

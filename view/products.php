@@ -2,10 +2,10 @@
 
 <h1>Our Terribly Wonderful Machine Products</h1>
 <div class="">
-    <?php foreach($data as $product) : ?>
+    <?php foreach($data->products as $product) : ?>
         <div>
             <h3>Product: <?= $product->name; ?></h3>
-            Cost: £ <?= $product->price; ?>
+            Cost: £<?= $product->price; ?>
             <a href="/product/<?= $product->id; ?>">View</a>
             <hr/>
         </div>

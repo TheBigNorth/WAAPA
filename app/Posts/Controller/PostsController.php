@@ -1,4 +1,4 @@
-<?php namespace App\Controller;
+<?php namespace App\Posts\Controller;
 
 use \App\Query\GetPostQuery;
 use \App\ViewModel\PostPageViewModel;

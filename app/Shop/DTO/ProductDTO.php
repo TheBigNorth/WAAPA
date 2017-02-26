@@ -1,23 +1,20 @@
 <?php namespace App\Shop\DTO;
 
+use \App\Shop\Model\Domain\MoneyAsDecimal;
+
 class ProductDTO
 {
     public $id;
     public $name;
-    public $price;
+    private $price;
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function setPrice($price)
+    public function setPrice(MoneyAsDecimal $price)
     {
         $this->price = $price;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

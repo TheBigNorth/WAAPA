@@ -2,6 +2,9 @@
 
 use \App\Shop\DTO\ProductDTO;
 use \App\Shop\DTO\ProductCollectionDTO;
+use \App\Shop\Repository\Products;
+use \Illuminate\Support\Collection;
+use \App\Shop\Model\Domain\MoneyAsDecimal;
 
 class GetProductsQuery
 {
@@ -9,25 +12,23 @@ class GetProductsQuery
 
     public function __construct()
     {
-        $this->collection = new ProductCollectionDTO();
+        $products = Products::all();
+        $this->collection = $this->getCollectionFromQuery($products);
+    }
 
-        $dto = new ProductDTO();
-        $dto->id = 1;
-        $dto->name = 'Pyjamas';
-        $dto->price = '12.50';
-        $this->collection[] = $dto;
+    private function getCollectionFromQuery(Collection  $dbProducts)
+    {
+        $collection = new ProductCollectionDTO();
+        
+        foreach ($dbProducts as $product) {
+            $dto = new ProductDTO();
+            $dto->id = $product->id;
+            $dto->name = $product->name;
+            $dto->setPrice(new MoneyAsDecimal($product->price));
+            $collection[] = $dto;
+        }
 
-        $dto = new ProductDTO();
-        $dto->id = 2;
-        $dto->name = 'T-Shirt';
-        $dto->price = '32.50';
-        $this->collection[] = $dto;
-
-        $dto = new ProductDTO();
-        $dto->id = 3;
-        $dto->name = 'Leggings';
-        $dto->price = '24.50';
-        $this->collection[] = $dto;
+        return $collection;
     }
 
     public function collection()
