@@ -1,6 +1,6 @@
 <?php namespace App\ViewModel;
 
-use \App\Query\GetPostQuery;
+use \App\Posts\DTO\PostDTO;
 
 class PostPageViewModel
 {
@@ -8,10 +8,9 @@ class PostPageViewModel
     public $title;
     public $content;
 
-    public function __construct(GetPostQuery $query)
+    public function __construct(PostDTO $dto)
     {
-        $data = $query->data();
-        $this->title = $data->title;
-        $this->content = $data->content;
+        $this->title = $dto->title;
+        $this->content = $dto->content;
     }
 }

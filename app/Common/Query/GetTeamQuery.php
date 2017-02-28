@@ -1,6 +1,6 @@
-<?php namespace App\Query;
+<?php namespace App\Common\Query;
 
-use \App\DTO\TeamMemberDTO;
+use \App\Common\DTO\TeamMemberDTO;
 
 class GetTeamQuery
 {

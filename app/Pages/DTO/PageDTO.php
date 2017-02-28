@@ -1,4 +1,4 @@
-<?php namespace App\DTO;
+<?php namespace App\Pages\DTO;
 
 class PageDTO
 {

@@ -1,9 +1,9 @@
 <?php namespace App\ViewModel;
 
 use \App\ComponentModel\TeamGridComponentModel;
-use \App\Query\HomePageQuery;
+use \App\Pages\Query\HomePageQuery;
 use \App\Query\TeamQuery;
-use \App\DTO\PageDTO;
+use \App\Pages\DTO\PageDTO;
 
 class HomeViewModel
 {

@@ -1,6 +1,6 @@
-<?php namespace App\Service;
+<?php namespace App\Common\Service;
 
-use \App\Query\GetTeamQuery;
+use \App\Common\Query\GetTeamQuery;
 use \App\ViewModel\TeamGridViewModel;
 use \App\ViewModel\TeamGridMember;
 

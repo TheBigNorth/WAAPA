@@ -3,7 +3,7 @@
 <h1><?= $data->title ?></h1>
 <div class="">
     <?= $data->content ?>
-    <?php \App\Controller\TeamGridController::get(); ?>
+    <?php \App\Common\Controller\TeamGridController::get(); ?>
 </div>
 
 <?php include __DIR__ . '/../partials/footer.php'; ?>

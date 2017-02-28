@@ -1,29 +1,28 @@
-<?php namespace App\Query;
+<?php namespace App\Posts\Query;
 
 use \GuzzleHttp\Client;
-use \App\DTO\PostDTO;
+use \App\Posts\DTO\PostDTO;
 
 class GetPostQuery
 {
     public $id;
     public $dto;
 
-    public function __construct(PostDTO $dto, $id)
-    {
-        $this->dto = $dto;
-        $this->id = $id;
-    }
+    public function __construct()
+    {}
 
-    public function data() {
+    public function data($id) {
+
+        $dto = new PostDTO();
 
         $data = get_posts([
-            'p' => $this->id
+            'p' => $id
         ])[0];
 
-        $this->dto->setTitle($data->post_title);
-        $this->dto->setContent($data->post_content);
+        $dto->setTitle($data->post_title);
+        $dto->setContent($data->post_content);
 
-        return $this->dto;
+        return $dto;
 
         /*$client = new Client();
 

@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../partials/header.php'; ?>
+<?php include __DIR__ . '/../../partials/header.php'; ?>
 
 <h1>Our Terribly Wonderful Machine Products</h1>
 <div class="">
@@ -12,4 +12,4 @@
     <?php endforeach; ?>
 </div>
 
-<?php include __DIR__ . '/../partials/footer.php'; ?>
+<?php include __DIR__ . '/../../partials/footer.php'; ?>

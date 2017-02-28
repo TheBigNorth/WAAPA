@@ -1,6 +1,6 @@
-<?php namespace App\Query;
+<?php namespace App\Pages\Query;
 
-use \App\DTO\PageDTO;
+use \App\Pages\DTO\PageDTO;
 
 class HomePageQuery
 {

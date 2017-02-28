@@ -1,18 +1,16 @@
 <?php namespace App\Posts\Controller;
 
-use \App\Query\GetPostQuery;
+use \App\Posts\Query\GetPostQuery;
 use \App\ViewModel\PostPageViewModel;
 use \App\View\PostPageView;
-use \App\DTO\PostDTO;
 
 class PostsController
 {
     public function getSingle()
     {
         global $wp_query;
-        $dto = new PostDTO();
-        $query = new GetPostQuery($dto, $wp_query->post->ID);
-        $post = new PostPageViewModel($query);
-        new PostPageView($post);
+        $post = (new GetPostQuery())->data($wp_query->post->ID);
+        $model = new PostPageViewModel($post);
+        new PostPageView($model);
     }
 }

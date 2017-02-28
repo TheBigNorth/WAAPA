@@ -9,6 +9,6 @@ class ProductsPageView extends BaseView
 
     public function __construct(ProductsPageViewModel $model)
     {
-        $this->render($model, 'products');
+        $this->render($model, 'products.index');
     }
 }

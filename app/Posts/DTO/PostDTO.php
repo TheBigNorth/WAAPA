@@ -1,4 +1,4 @@
-<?php namespace App\DTO;
+<?php namespace App\Posts\DTO;
 
 class PostDTO
 {
