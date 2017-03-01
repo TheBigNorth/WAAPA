@@ -10,7 +10,6 @@ class Router
     public static function init()
     {
         self::web();
-        self::api();
     }
 
     public static function web()
@@ -49,10 +48,5 @@ class Router
         if (is_404()) {
             echo "<br/><br/>NOT FOUND";
         }
-    }
-
-    private static function api()
-    {
-        
     }
 }

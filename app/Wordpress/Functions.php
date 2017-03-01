@@ -8,6 +8,7 @@ class Functions
         RewriteRules::init();
         ProductAdmin::init();
         RouterAdmin::init();
+        RouterAPI::init();
         add_action( 'init', array( 'App\Wordpress\CustomTemplates', 'get_instance' ) );
     }
     
