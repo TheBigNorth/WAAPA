@@ -1,8 +1,8 @@
 <?php namespace App\Pages\Controller;
 
-use \App\ViewModel\HomeViewModel;
+use \App\Pages\ViewModel\HomeViewModel;
 use \App\Pages\Query\HomePageQuery;
-use \App\View\HomeView;
+use \App\Pages\View\HomeView;
 use \App\Common\Query\TeamQuery;
 
 class HomeController

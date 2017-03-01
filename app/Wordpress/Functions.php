@@ -1,5 +1,10 @@
 <?php namespace App\Wordpress;
 
+use \App\Wordpress\Routes\RewriteRules;
+use \App\Wordpress\Routes\ProductAdmin;
+use \App\Wordpress\Routes\RouterAdmin;
+use \App\Wordpress\Routes\RouterAPI;
+
 class Functions
 {
     public static function init()

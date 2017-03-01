@@ -1,6 +1,7 @@
-<?php namespace App\View;
+<?php namespace App\Posts\View;
 
-use \App\ViewModel\PostPageViewModel;
+use \App\Posts\ViewModel\PostPageViewModel;
+use \App\View\BaseView;
 
 class PostPageView extends BaseView
 {

@@ -1,4 +1,4 @@
-<?php namespace App\ViewModel;
+<?php namespace App\Posts\ViewModel;
 
 use \App\Posts\DTO\PostDTO;
 

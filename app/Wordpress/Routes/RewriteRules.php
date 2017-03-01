@@ -1,4 +1,4 @@
-<?php namespace App\Wordpress;
+<?php namespace App\Wordpress\Routes;
 
 class RewriteRules 
 {

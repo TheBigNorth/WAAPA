@@ -1,6 +1,7 @@
-<?php namespace App\View;
+<?php namespace App\Common\View;
 
-use \App\ViewModel\TeamGridViewModel;
+use \App\Common\ViewModel\TeamGridViewModel;
+use \App\View\BaseView;
 
 class TeamGridView extends BaseView
 {

@@ -1,4 +1,4 @@
-<?php namespace App\Wordpress;
+<?php namespace App\Wordpress\Routes;
 
 use \App\Pages\Controller\HomeController;
 use \App\Posts\Controller\PostsController;

@@ -32,6 +32,6 @@ class DB
 
     public static function schemas()
     {
-        new \Waapa\Config\Schema\Products();
+        new \App\Config\Schema\Products();
     }
 }

@@ -1,8 +1,8 @@
 <?php namespace App\Common\Controller;
 
 use \App\Common\Query\GetTeamQuery;
-use \App\ViewModel\TeamGridViewModel;
-use \App\View\TeamGridView;
+use \App\Common\ViewModel\TeamGridViewModel;
+use \App\Common\View\TeamGridView;
 use \App\Common\Service\BuildTeamGrid;
 
 class TeamGridController

@@ -1,4 +1,4 @@
-<?php namespace Waapa\Config\Schema;
+<?php namespace App\Config\Schema;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Blueprint;

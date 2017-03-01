@@ -1,8 +1,8 @@
 <?php namespace App\Common\Service;
 
 use \App\Common\Query\GetTeamQuery;
-use \App\ViewModel\TeamGridViewModel;
-use \App\ViewModel\TeamGridMember;
+use \App\Common\ViewModel\TeamGridViewModel;
+use \App\Common\ViewModel\TeamGridMember;
 
 class BuildTeamGrid
 {

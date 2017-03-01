@@ -1,8 +1,8 @@
 <?php namespace App\Posts\Controller;
 
 use \App\Posts\Query\GetPostQuery;
-use \App\ViewModel\PostPageViewModel;
-use \App\View\PostPageView;
+use \App\Posts\ViewModel\PostPageViewModel;
+use \App\Posts\View\PostPageView;
 
 class PostsController
 {

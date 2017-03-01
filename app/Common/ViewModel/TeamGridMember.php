@@ -1,4 +1,4 @@
-<?php namespace App\ViewModel;
+<?php namespace App\Common\ViewModel;
 
 class TeamGridMember 
 {

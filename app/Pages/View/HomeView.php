@@ -1,6 +1,7 @@
-<?php namespace App\View;
+<?php namespace App\Pages\View;
 
-use \App\ViewModel\HomeViewModel;
+use \App\Pages\ViewModel\HomeViewModel;
+use \App\View\BaseView;
 
 class HomeView extends BaseView
 {
