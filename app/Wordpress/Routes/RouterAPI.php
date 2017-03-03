@@ -13,8 +13,8 @@ class RouterAPI
 
     public static function routes()
     {
-        WordpressAPI::get('v1', '/products', [], function() {
-            PostsAPIController::getSingle();
+        WordpressAPI::get('v1', '/products/:id', ['id'], function($res) {
+            PostsAPIController::getSingle($res['id']);
         });
     }
 }

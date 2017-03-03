@@ -4,6 +4,7 @@ use \App\Pages\Controller\HomeController;
 use \App\Posts\Controller\PostsController;
 use \App\Pages\Controller\PageController;
 use \App\Shop\Controller\ProductController;
+use \App\Core\Route;
 
 class Router
 {
@@ -14,6 +15,24 @@ class Router
 
     public static function web()
     {
+    
+        $router = Route::init($_SERVER, $_GET, $_POST);
+
+        $router->get('/blog', function($res) {
+            return 'blog';
+        });
+
+        $router->get('/posts/:id', function($res) {
+            return 'posts ' . $res['id'];
+        });
+
+        $router->get('/user/:id/posts', function($res) {
+            return 'user ' . $res['id'] . ' posts';
+        });
+
+         $router->get('/user/:id', function($res) {
+            return 'user ' . $res['id'];
+        });
 
         if (get_query_var('product')) {
             return ProductController::getProductPage(
