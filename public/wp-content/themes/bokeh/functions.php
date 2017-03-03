@@ -1,5 +1,5 @@
 <?php 
 
-\Theme\Admin\ProductAdmin::init();
+\Theme\Admin\Admin::init();
 
 \Waapa\App::init();
