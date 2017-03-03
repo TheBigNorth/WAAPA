@@ -1,6 +1,4 @@
-<?php namespace App\Wordpress\Routes;
-
-use \App\Shop\Controller\ProductController;
+<?php namespace Theme\Admin;
 
 class ProductAdmin
 {
@@ -22,11 +20,14 @@ class ProductAdmin
 
     public static function settingsPage() {
         if (is_admin() && isset($_GET['action']) && $_GET['action'] === 'addNewProduct') {
-            return ProductController::addProductsAdminPage();
+            echo 'mebo';
+            return;
         }
 
         if (is_admin() && isset($_GET['page']) && $_GET['page'] === 'products.php') {
-            return ProductController::getProductsAdminPage();
+            echo 'mebo';
+            return;
         }
 	}
+
 }

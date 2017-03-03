@@ -17,9 +17,16 @@ class IndexController
                     ->first();
         
         if (count($page) === 0) {
-            return Render::view('404', []);
+            return self::pageDoesNotExist();
         }
 
-        return Render::view('page', ['page' => $page]);
+        $template = $page->post_type === 'post' ? 'posts.single' : 'page';
+
+        return Render::view($template, ['page' => $page]);
+    }
+
+    public static function pageDoesNotExist()
+    {
+        return Render::view('404', []);
     }
 }

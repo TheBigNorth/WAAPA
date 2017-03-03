@@ -10,6 +10,7 @@ class PostController
         $posts = Posts::where('post_type', 'post')
                     ->where('post_status', 'publish')
                     ->get();
+                    
         return Render::view('posts.index', ['posts' => $posts]);
     }
 

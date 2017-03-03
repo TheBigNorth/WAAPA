@@ -1,5 +1,7 @@
 <?php namespace Waapa\Core;
 
+use \Waapa\Middlewear\WordpressAuth;
+
 class Route
 {
 
@@ -19,18 +21,23 @@ class Route
         $this->post = $post;
     }
 
-    public function get($route, callable $func)
+    public function get($route, callable $func, array $middlewearOptions = [])
     {  
-    
-        //echo '<pre>';
 
         list($args, $routes) = self::getURLArgs(
             self::getURIAsArray($route),
             self::getURIAsArray(self::getRequestURI($this->server))
         );
+
+        $parameters = [];
+
+        foreach($this->get as $key => $value) {
+            $parameters[$key] = $value;
+        }
  
         if (!empty($args) || !empty($routes)) {
-             echo call_user_func_array($func, [$args]);
+             $this->loopThroughMiddleWear($middlewearOptions);
+             echo call_user_func_array($func, [$args, $parameters]);
              exit;
         }
        
@@ -48,8 +55,6 @@ class Route
         for ($i = 0; $i < count($routeArray); $i++) {
             $routeSegment = $routeArray[$i];
             $serverSegment = $serverRouteArray[$i];
-
-            //var_dump($routeArray, $routeSegment, $serverSegment); //echo '</pre>';
 
             if (isset($routeSegment) && isset($serverSegment)
                 && self::isRouteVariable($routeSegment)
@@ -106,5 +111,19 @@ class Route
         $array = explode('/', $uri);
         array_shift($array);
         return $array;
+    }
+
+    private function loopThroughMiddleWear(array $options)
+    {
+        
+        if (!is_array($options)) {
+            throw new \Exception('$options is not an array');
+        }
+
+        foreach ($options as $option) {
+            $class = '\Waapa\Middlewear\\' . $option;
+            $instance = new $class($this);
+            echo $option;
+        }
     }
 }

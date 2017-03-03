@@ -4,12 +4,12 @@ use \Waapa\Core\Route;
 use \Waapa\Core\Router;
 use \Waapa\Controller\IndexController;
 use \Waapa\Controller\PostController;
+use \Waapa\Controller\ProductController;
 
 class Routes
 {
     public static function init()
     {
-
 
         Router::get('/post/:slug', function($res) {
              return PostController::single($res['slug']);
@@ -23,13 +23,9 @@ class Routes
              return PostController::index(1);
         });
 
-        Router::get('/team/:id', function($res) {
-             return 'Team member Id: ' . $res['id'];
-        });
-
-        Router::get('/team', function($res) {
-             return 'The whole team';
-        });
+        Router::get('/admin/products', function($res) {
+            return ProductController::admin();
+        }, ['WordpressAuth']);
 
         Router::get('/:slug', function($res) {
              return IndexController::page($res['slug']);
