@@ -5,8 +5,9 @@ use \App\Posts\Controller\PostsController;
 use \App\Pages\Controller\PageController;
 use \App\Shop\Controller\ProductController;
 use \App\Core\Route;
+use \App\Core\Router;
 
-class Router
+class Routing
 {
     public static function init()
     {
@@ -18,39 +19,37 @@ class Router
     
         $router = Route::init($_SERVER, $_GET, $_POST);
 
-        $router->get('/blog', function($res) {
+        Router::get('/blog', function($res) {
             return 'blog';
         });
 
-        $router->get('/posts/:id', function($res) {
-            return 'posts ' . $res['id'];
+        Router::get('/posts/:id', function($res) {
+            return PostsController::getSingle($res['id']);
         });
 
-        $router->get('/user/:id/posts', function($res) {
+        Router::get('/products', function($res) {
+            return ProductController::getProductsPage();
+        });
+
+        Router::get('/product/:id', function($res) {
+            return ProductController::getProductPage($res['id']);
+        });
+
+        Router::get('/user/:id/posts', function($res) {
             return 'user ' . $res['id'] . ' posts';
         });
 
-         $router->get('/user/:id', function($res) {
+        Router::get('/user/:id', function($res) {
             return 'user ' . $res['id'];
         });
 
-        if (get_query_var('product')) {
-            return ProductController::getProductPage(
-                (integer) get_query_var('product')
-            );
-        }
+        Router::get('/:slug', function($res) {
+             return PageController::get($res['slug']);
+        });
 
-        if (get_query_var('products')) {
-            return ProductController::getProductsPage();
-        }
-
-        if (is_home() && is_front_page() ) {
+        Router::get('/', function($res) {
             return HomeController::get();
-        }
-        
-        if (is_front_page()) {
-            return HomeController::get();
-        }
+        });
 
         if (is_home()) {
             return PostsController::getBlog();
@@ -58,10 +57,6 @@ class Router
         
         if (is_single()) {
             return PostsController::getSingle();
-        }
-
-        if (is_singular()) {
-            return PageController::get();
         }
 
         if (is_404()) {

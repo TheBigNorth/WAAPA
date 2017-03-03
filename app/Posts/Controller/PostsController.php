@@ -6,10 +6,10 @@ use \App\Posts\View\PostPageView;
 
 class PostsController
 {
-    public function getSingle()
+    public function getSingle($id)
     {
         global $wp_query;
-        $post = (new GetPostQuery())->data($wp_query->post->ID);
+        $post = (new GetPostQuery())->data($id);
         $model = new PostPageViewModel($post);
         new PostPageView($model);
     }

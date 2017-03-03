@@ -1,5 +1,5 @@
 <?php
 wp_head();
-\App\Wordpress\Theme::init();
+//\App\Wordpress\Theme::init();
 wp_footer();
 ?>

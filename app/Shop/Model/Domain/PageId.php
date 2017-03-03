@@ -6,10 +6,10 @@ class PageId
 
     public function __construct($id)
     {
-        if (is_integer($id)) {
+        if (is_numeric($id)) {
             $this->id = $id;
         } else {
-            throw new \Exception('Page id is not an integer');
+            throw new \Exception('Page id is not a number');
         }
     }
 

@@ -1,4 +1,4 @@
-<?php namespace App\Core;
+<?php namespace Waapa\Core;
 
 class Route
 {
@@ -21,10 +21,12 @@ class Route
 
     public function get($route, callable $func)
     {  
-        
+    
+        //echo '<pre>';
+
         list($args, $routes) = self::getURLArgs(
             self::getURIAsArray($route),
-            self::getServerURIArray($_SERVER)
+            self::getURIAsArray(self::getRequestURI($this->server))
         );
  
         if (!empty($args) || !empty($routes)) {
@@ -39,11 +41,15 @@ class Route
         $args = [];
         $routes = [];
 
+        if (empty($routeArray) && empty($serverRouteArray)) {
+            $args['default'] = '';
+        }
+
         for ($i = 0; $i < count($routeArray); $i++) {
             $routeSegment = $routeArray[$i];
             $serverSegment = $serverRouteArray[$i];
 
-            //echo '<pre>'; var_dump($routeSegment, $serverSegment); echo '</pre>';
+            //var_dump($routeArray, $routeSegment, $serverSegment); //echo '</pre>';
 
             if (isset($routeSegment) && isset($serverSegment)
                 && self::isRouteVariable($routeSegment)
@@ -76,9 +82,6 @@ class Route
         return [$args, $routes];
     }
 
-    private function getArgs()
-    {}
-
     private function areEqualValues($serverSegment, $routeSegment)
     {
         return $serverSegment === $routeSegment;
@@ -93,18 +96,13 @@ class Route
         return strpos($string, ':') > -1;
     }
 
-    private function getServerURIArray(array $server)
-    {
-        return self::getURIAsArray(self::getRequestURI($server)); 
-    }
-
     private function getRequestURI(array $server)
     {
-        return explode('?', rtrim($server['REQUEST_URI'], '/'))[0];
+        return explode('?', rtrim($this->server['REQUEST_URI'], '/'))[0];
     }
 
     private function getURIAsArray($uri)
-    {
+    {   
         $array = explode('/', $uri);
         array_shift($array);
         return $array;
