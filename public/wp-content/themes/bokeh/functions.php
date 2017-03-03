@@ -1,2 +1,2 @@
 <?php 
-\Waapa\Wordpress\Functions::init();
+\Waapa\App::init();

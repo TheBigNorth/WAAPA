@@ -1,9 +1,9 @@
-<?php namespace Waapa\Wordpress;
+<?php namespace Waapa;
 
 use \Waapa\Routes;
 use \Waapa\DB\EloquentConnection;
 
-class Functions
+class App
 {
     public static function init()
     {
