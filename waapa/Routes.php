@@ -2,6 +2,8 @@
 
 use \Waapa\Core\Route;
 use \Waapa\Core\Router;
+use \Waapa\Controller\IndexController;
+use \Waapa\Controller\PostController;
 
 class Routes
 {
@@ -9,12 +11,16 @@ class Routes
     {
 
 
-        Router::get('/blog/:slug', function($res) {
-             return 'Blog by slug: ' . $res['slug'];
+        Router::get('/post/:slug', function($res) {
+             return PostController::single($res['slug']);
+        });
+
+        Router::get('/blog/page/:id', function($res) {
+             return PostController::index($res['id']);
         });
 
         Router::get('/blog', function($res) {
-             return 'Blog';
+             return PostController::index(1);
         });
 
         Router::get('/team/:id', function($res) {
@@ -26,11 +32,11 @@ class Routes
         });
 
         Router::get('/:slug', function($res) {
-             return 'Another Page';
+             return IndexController::page($res['slug']);
         });
 
         Router::get('', function($res) {
-            return 'Homepage';
+            return IndexController::index();
         });
 
     }
