@@ -27,19 +27,34 @@ class ProductController extends BaseController
 
     public static function add($data)
     {
-        if (!isset($data['product-name'])) {
+        if (!isset($data['product-name'])
+            || !isset($data['product-price'])) {
             return;
         }
 
-        if (!isset($data['product-price'])) {
-            return;
-        }
-
-        $products = new Products();
-        $products->name = $data['product-name'];
-        $products->price = $data['product-price'];
-        $products->save();
+        $product = new Products();
+        $product->name = $data['product-name'];
+        $product->price = $data['product-price'];
+        $product->save();
 
         return self::redirect('/admin/products');
+    }
+
+    public static function edit($id, $data)
+    {
+  
+        if (!isset($data['product-name'])
+            || !isset($data['product-price'])) {
+            return;
+        }
+
+        $product = Products::where('id', $id)
+                    ->first();
+
+        $product->name = $data['product-name'];
+        $product->price = $data['product-price'];
+        $product->save();
+
+        return self::redirect('/admin/products/edit/' . $id);
     }
 }

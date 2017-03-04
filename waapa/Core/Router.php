@@ -13,4 +13,10 @@ class Router
         $router = new Route($_SERVER, $_GET, $_POST);
         return $router->post($url, $func, $middlewearOptions);
     }
+
+    public static function put($url, callable $func, array $middlewearOptions = [])
+    {
+        $router = new Route($_SERVER, $_GET, $_POST);
+        return $router->put($url, $func, $middlewearOptions);
+    }
 }

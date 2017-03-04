@@ -31,6 +31,10 @@ class Routes
             return ProductController::admin();
         }, ['WordpressAuth']);
 
+        Router::put('/product/:id', function($res, $data) {
+            return ProductController::edit($res['id'], $data);
+        });
+
         Router::post('/product', function($res, $data) {
             return ProductController::add($data);
         }, ['WordpressAuth']);

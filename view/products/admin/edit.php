@@ -6,7 +6,8 @@
     <div class="">
         <div class="col-sm-4">
             <h1>Edit: </h1>
-            <form method="put" action="/product/<?= $product->id; ?>">
+            <form method="post" action="/product/<?= $product->id; ?>">
+                <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="product-name">Product name</label>
                     <input 

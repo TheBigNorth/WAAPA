@@ -8,18 +8,20 @@ class Route
     private $server;
     private $get;
     private $post;
+    private $put;
 
     public function __construct(array $server, array $get, array $post)
     {
         $this->server = $server;
         $this->get = $get;
         $this->post = $post;
+        $this->put = $post;
     }
 
     public function get($route, callable $func, array $middlewearOptions = [])
     {  
 
-        if (!$this->getRequestType('get')) {
+        if (!$this->isRequestType('get')) {
             return;
         }
 
@@ -28,11 +30,21 @@ class Route
 
     public function post($route, callable $func, array $middlewearOptions = [])
     {
-        if (!$this->getRequestType('post')) {
+        if (!$this->isRequestType('post')) {
             return;
         }
 
         $this->callCallbackFunction('post', $route, $func, $middlewearOptions);
+    }
+
+    public function put($route, callable $func, array $middlewearOptions = [])
+    {
+
+        if (!$this->isRequestType('put')) {
+            return;
+        }
+
+        $this->callCallbackFunction('put', $route, $func, $middlewearOptions);
     }
 
     private function callCallbackFunction($requestType, $route, callable $func, array $middlewearOptions = [])
@@ -133,9 +145,10 @@ class Route
         return $array;
     }
 
-    private function getRequestType($requestType)
+    private function isRequestType($requestType)
     {
-        return strtolower($_SERVER['REQUEST_METHOD']) === $requestType;
+        $method = isset($this->post['_method']) ? $this->post['_method'] : $this->server['REQUEST_METHOD'];
+        return strtolower($method) === $requestType;
     }
 
     private function loopThroughMiddleWear(array $options)
