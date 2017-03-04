@@ -9,12 +9,7 @@ class Route
     private $get;
     private $post;
 
-    public static function init(array $server, array $get, array $post)
-    {
-        return new self($server, $get, $post);
-    }
-
-    private function __construct(array $server, array $get, array $post)
+    public function __construct(array $server, array $get, array $post)
     {
         $this->server = $server;
         $this->get = $get;
@@ -24,23 +19,48 @@ class Route
     public function get($route, callable $func, array $middlewearOptions = [])
     {  
 
+        if (!$this->getRequestType('get')) {
+            return;
+        }
+
+        $this->callCallbackFunction('get', $route, $func, $middlewearOptions);
+    }
+
+    public function post($route, callable $func, array $middlewearOptions = [])
+    {
+        if (!$this->getRequestType('post')) {
+            return;
+        }
+
+        $this->callCallbackFunction('post', $route, $func, $middlewearOptions);
+    }
+
+    private function callCallbackFunction($requestType, $route, callable $func, array $middlewearOptions = [])
+    {
+        
         list($args, $routes) = self::getURLArgs(
             self::getURIAsArray($route),
             self::getURIAsArray(self::getRequestURI($this->server))
         );
-
-        $parameters = [];
-
-        foreach($this->get as $key => $value) {
-            $parameters[$key] = $value;
-        }
- 
+        
         if (!empty($args) || !empty($routes)) {
              $this->loopThroughMiddleWear($middlewearOptions);
-             echo call_user_func_array($func, [$args, $parameters]);
+             echo call_user_func_array($func, [$args, $this->getRequestKeyValues($requestType)]);
              exit;
         }
-       
+    }
+
+    private function getRequestKeyValues($requestType)
+    {
+        $parameters = [];
+
+        $request = $this->{$requestType};
+
+        foreach($request as $key => $value) {
+            $parameters[$key] = $value;
+        }
+
+        return $parameters;
     }
 
     private function getURLArgs($routeArray, $serverRouteArray)
@@ -80,7 +100,7 @@ class Route
         
             unset($args);
             unset($routes);
-            break;     
+            break;
             
         }
 
@@ -113,6 +133,11 @@ class Route
         return $array;
     }
 
+    private function getRequestType($requestType)
+    {
+        return strtolower($_SERVER['REQUEST_METHOD']) === $requestType;
+    }
+
     private function loopThroughMiddleWear(array $options)
     {
         
@@ -123,7 +148,6 @@ class Route
         foreach ($options as $option) {
             $class = '\Waapa\Middlewear\\' . $option;
             $instance = new $class($this);
-            echo $option;
         }
     }
 }

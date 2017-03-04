@@ -11,10 +11,6 @@ class Routes
     public static function init()
     {
 
-        Router::get('/post/:slug', function($res) {
-             return PostController::single($res['slug']);
-        });
-
         Router::get('/blog/page/:id', function($res) {
              return PostController::index($res['id']);
         });
@@ -23,8 +19,20 @@ class Routes
              return PostController::index(1);
         });
 
+        Router::get('/admin/products/edit/:id', function($res) {
+            return ProductController::adminEdit($res['id']);
+        }, ['WordpressAuth']);
+
+        Router::get('/admin/products/add', function($res) {
+            return ProductController::adminAddNew();
+        }, ['WordpressAuth']);
+
         Router::get('/admin/products', function($res) {
             return ProductController::admin();
+        }, ['WordpressAuth']);
+
+        Router::post('/product', function($res, $data) {
+            return ProductController::add($data);
         }, ['WordpressAuth']);
 
         Router::get('/:slug', function($res) {

@@ -11,7 +11,7 @@ class Admin
     {
         add_menu_page( 
             'Manager',
-            'Manager',
+            'Additonal Content',
             'manage_options',
             'manager.php',
             array(__CLASS__, 'settingsPage')
