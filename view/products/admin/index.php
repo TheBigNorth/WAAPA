@@ -27,7 +27,12 @@
                                 Edit
                             </a>
                         </td>
-                        <td><button>Remove from display</button></td>
+                        <td>
+                            <form method="post" action="/product/<?= $product->id; ?>/display/remove">
+                                <input type="hidden" name="_method" value="PUT">
+                                <button>Remove from display</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -5,9 +5,26 @@ use \Waapa\Repository\Products;
 
 class ProductController extends BaseController
 {
+    public static function index()
+    {
+        $products = Products::where('status', '1')
+                        ->get();
+
+        return Render::view('products.index', ['products' => $products]);
+    }
+
+    public static function single($id)
+    {
+        $product = Products::where('id', $id)
+                    ->first();
+
+        return Render::view('products.single', ['product' => $product ]);
+    }
+    
     public static function admin()
     {
-        $products = Products::all();
+        $products = Products::where('status', '1')
+                        ->get();
 
         return Render::view('products.admin.index', ['products' => $products]);
     }
@@ -35,6 +52,7 @@ class ProductController extends BaseController
         $product = new Products();
         $product->name = $data['product-name'];
         $product->price = $data['product-price'];
+        $product->status = 1;
         $product->save();
 
         return self::redirect('/admin/products');
@@ -56,5 +74,16 @@ class ProductController extends BaseController
         $product->save();
 
         return self::redirect('/admin/products/edit/' . $id);
+    }
+
+    public static function removeFromDisplay($id)
+    {
+        $product = Products::where('id', $id)
+                    ->first();
+
+        $product->status = 2;
+        $product->save();
+
+        return self::redirect('/admin/products');
     }
 }

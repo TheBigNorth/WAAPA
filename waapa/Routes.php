@@ -31,6 +31,10 @@ class Routes
             return ProductController::admin();
         }, ['WordpressAuth']);
 
+        Router::put('/product/:id/display/remove', function($res, $data) {
+            return ProductController::removeFromDisplay($res['id'], $data);
+        });
+
         Router::put('/product/:id', function($res, $data) {
             return ProductController::edit($res['id'], $data);
         });
@@ -38,6 +42,14 @@ class Routes
         Router::post('/product', function($res, $data) {
             return ProductController::add($data);
         }, ['WordpressAuth']);
+
+        Router::get('/products/:id', function($res) {
+            return ProductController::single($res['id']);
+        });
+
+        Router::get('/products', function() {
+            return ProductController::index();
+        });
 
         Router::get('/:slug', function($res) {
              return IndexController::page($res['slug']);
