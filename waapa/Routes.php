@@ -33,11 +33,11 @@ class Routes
 
         Router::put('/product/:id/display/remove', function($res, $data) {
             return ProductController::removeFromDisplay($res['id'], $data);
-        });
+        }, ['WordpressAuth']);
 
         Router::put('/product/:id', function($res, $data) {
             return ProductController::edit($res['id'], $data);
-        });
+        }, ['WordpressAuth']);
 
         Router::post('/product', function($res, $data) {
             return ProductController::add($data);
